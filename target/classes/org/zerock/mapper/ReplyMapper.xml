@@ -23,5 +23,9 @@
  
  </update>
  
+ <select id="getListWithPaging" resultType="org.zerock.domain.ReplyVo">
+  select rno,bno,reply,replyer,replyDate,updatedate from tbl_relpy where bno= #{bno} order by rno asc
+ </select>
+ 
  
  </mapper>

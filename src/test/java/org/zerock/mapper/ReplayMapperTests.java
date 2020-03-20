@@ -1,5 +1,6 @@
 package org.zerock.mapper;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.Ignore;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVo;
 
 import lombok.Setter;
@@ -58,7 +60,7 @@ public class ReplayMapperTests {
 		
 	}
 	
-	@Test
+	@Test @Ignore
 	public void Testupdate()
 	{
 		Long trno = 10L;
@@ -68,6 +70,16 @@ public class ReplayMapperTests {
 		log.info("udpate count = "+count);
 	}
 	
+	@Test
+	public void TestList()
+	{
+		Criteria cri = new Criteria();
+		List<ReplyVo> replist= mapper.getListWithPaging(cri, bnoArr[0]);
+	
+		for (ReplyVo replyVo : replist) {
+			log.info(replyVo);
+		}
+	}
 	
 	
 	
