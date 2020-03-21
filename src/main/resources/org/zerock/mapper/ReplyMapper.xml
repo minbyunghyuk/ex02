@@ -4,27 +4,27 @@
  <mapper namespace="org.zerock.mapper.ReplyMapper">
  
  <insert id="insert">
- 	insert into tbl_relpy(rno,bno,reply,replyer)
+ 	insert into tbl_reply(rno,bno,reply,replyer)
  	values(seq_reply.nextval, #{bno},#{reply},#{replyer})
  </insert>
  
  <select id="read" resultType="org.zerock.domain.ReplyVo">
-  select*from tbl_relpy where rno= #{rno}
+  select*from tbl_reply where rno= #{rno}
  </select>
  
  <delete id="delete">
- delete from tbl_relpy where rno= #{rno}
+ delete from tbl_reply where rno= #{rno}
  
  </delete>
  
  <update id="update">
  
- 	update tbl_relpy set reply = #{reply}, updatedate= sysdate where rno=#{rno} 
+ 	update tbl_reply set reply = #{reply}, updatedate= sysdate where rno=#{rno} 
  
  </update>
  
  <select id="getListWithPaging" resultType="org.zerock.domain.ReplyVo">
-  select rno,bno,reply,replyer,replyDate,updatedate from tbl_relpy where bno= #{bno} order by rno asc
+  select rno,bno,reply,replyer,replyDate,updatedate from tbl_reply where bno= #{bno} order by rno asc
  </select>
  
  

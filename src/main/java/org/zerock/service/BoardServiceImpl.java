@@ -29,19 +29,21 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVo get(Long no) {
-		log.info("가져온Vo객체 :" + no);
+		//log.info("가져온Vo객체 :" + no);
 		return mapper.read(no);
 	}
 
 	@Override
 	public boolean modify(BoardVo vo) {
 
+		System.out.println("타는거야 ?");
 		log.info("변경"+ vo);
 		return mapper.update(vo) == 1;
 	}
 
 	@Override
 	public boolean remove(Long no) {
+		
 		log.info("삭제"+ no);
 		return mapper.delete(no)==1;
 	}
@@ -51,6 +53,12 @@ public class BoardServiceImpl implements BoardService {
 
 		log.info("paging list" + cri);
 		return mapper.getListWtihPaing(cri);
+	}
+	@Override
+	public int getTotalCount(Criteria cri)
+	{
+		log.info("get page count");
+		return mapper.getTotalCount(cri);
 	}
 
 }
