@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../includes/header.jsp"%>
+
+<link rel="shortcut icon" href="#">
+
 <div class="row">
 
 	<div class="col-lg-12">
