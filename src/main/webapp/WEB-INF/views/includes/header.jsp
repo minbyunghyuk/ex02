@@ -25,6 +25,8 @@
 <!-- Bootstrap Core CSS -->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
 <link href="/resources/vendor/metisMenu/metisMenu.min.css"

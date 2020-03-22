@@ -7,6 +7,7 @@
 
 <link rel="shortcut icon" href="#">
 
+<
 <div class="row">
 
 	<div class="col-lg-12">
@@ -20,7 +21,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Board List Page
-				<button id="regBtn" type="button" class="btn btn-xs pull-right">Register
+				<button id="regBtn" type="button" class="btn btn-primary btn-xs pull-right">Register
 					New Board</button>
 			</div>
 			<!-- /.panel-heading -->
@@ -28,7 +29,7 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-							<th>#번호</th>
+							<th>번호</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
@@ -53,7 +54,7 @@
 					<div class="col-lg-12">
 						<form action="/board/list" method="get" id="searchForm">
 							<!--  여기서 eq는 인덱스를 찾아주는 역할  -->
-							<select name="type">
+							<select name="type" class="input-sm">
 								<option value=""
 									<c:out value="${pageMaker.cri.type == null ? 'selected' : ''}"/>>--</option>
 								<option value="T"
@@ -71,17 +72,17 @@
 								<option value="TWC"
 									<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected' : ''}"/>>모두
 									검색</option>
-							</select> <input type="text" name="keyword"
-								value="<c:out value='${pageMaker.cri.keyword}'/>" /> <input
-								type="hidden" name="pageNum"
-								value="<c:out value='${pageMaker.cri.pageNum}'/>" /> <input
-								type="hidden" name="amount"
-								value="<c:out value='${pageMaker.cri.amount}'/>" />
-							<button class="btn btn-default">Search</button>
+									
+							</select>
+								 <input type="text" name="keyword" class="input-sm"  value="<c:out value='${pageMaker.cri.keyword}'/>" />
+								 <input type="hidden" name="pageNum"value="<c:out value='${pageMaker.cri.pageNum}'/>" />
+								 <input type="hidden" name="amount" value="<c:out value='${pageMaker.cri.amount}'/>" />
+											<button class="btn btn-default" type="button">
+												<i class="fa fa-search"></i>
+											</button>
 						</form>
 					</div>
 				</div>
-
 				<div class='pull-right'>
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">

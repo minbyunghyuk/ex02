@@ -432,3 +432,13 @@ table.dataTable thead .sorting:after {
     border-left-width: 0;
   }
 }
+.selectbox {
+
+    position: relative;
+    width: 200px;  /* 너비설정 */
+    border: 1px solid #999;  /* 테두리 설정 */
+    z-index: 1;
+}
+
+
+
