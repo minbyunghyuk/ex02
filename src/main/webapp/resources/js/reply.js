@@ -38,21 +38,20 @@ var replyService = (function() {
 	// jquery의 getjson추가
 	// getlist함수는 param이라는 객체를 통해서 필요한 파라미터를 전달받아서 JSON목록을 호출한다.
 	// url호출시 확장자를 .json으로 구함
+	// 0323 수정 페이처리 함수변경 댓글리스트+ 댓글갯수 를가져오게 변경 
 	function getList(param, callback, error) {
-		var bno = param.bno;
-		var page = param.page || 1;
-
-		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
-				function(data) {
-					if (callback) {
-						callback(data);
-					}
-				}).fail(function(xhr, status, err) {
-			if (error) {
-				error();
-			}
-		});
+	    var bno = param.bno;
+        var page = param.page || 1;
+        $.getJSON("/replies/pages/" + bno + "/" + page + ".json",
+            function (data) {
+                if (callback)
+                    // callback(data); // 댓글 목록만 가져오는 경우
+                    callback(data.replyCnt, data.list); // 댓글 숫자와 목록(페이징)
+            }).fail(function (xhr, status, err) {
+            if(error) error();
+        });
 	}
+
 	// 3.remove
 	function remove(rno, callback, error) {
 		$.ajax({
@@ -134,6 +133,9 @@ var replyService = (function() {
 		}
 
 	}
+	
+	
+	
 	return {
 		add : add,
 		getList : getList,

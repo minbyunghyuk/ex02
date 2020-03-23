@@ -1,6 +1,6 @@
 package org.zerock.controller;
 
-import java.util.List;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVo;
 import org.zerock.service.ReplyService;
 
@@ -44,20 +45,25 @@ public class ReplyController {
 				?new ResponseEntity<>("sucess",HttpStatus.OK):new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
+	
+	//page 메서드변경으로 수정 0322
 	//페이지 -> (/replies/pages/:bno/:page) get
-	@GetMapping(value = "/pages/{bno}/{page}",produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVo>> getList(@PathVariable("page")int page , @PathVariable("bno") Long bno)
-	{
-		//여기서페이지번호는 메인글 번호 
-		log.info("getList");
-		Criteria cri = new Criteria(page,10);
-		//log.info(String.valueOf(cri.getAmount())+"Amount"); //10개까지
-		//log.info(String.valueOf(cri.getPageNum())+"Page");
-		log.info("페이지처리객체"+cri);
-		//ResponseEntity return시에는 객체+httpStatus 를 리턴해줘야함.
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
-		
-	}
+//	@GetMapping(value = "/pages/{bno}/{page}",produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+//	public ResponseEntity<List<ReplyVo>> getList(@PathVariable("page")int page , @PathVariable("bno") Long bno)
+//	{
+//		//여기서페이지번호는 메인글 번호 
+//		log.info("getList");
+//		Criteria cri = new Criteria(page,10);
+//		//log.info(String.valueOf(cri.getAmount())+"Amount"); //10개까지
+//		//log.info(String.valueOf(cri.getPageNum())+"Page");
+//		log.info("페이지처리객체"+cri);
+//		//ResponseEntity return시에는 객체+httpStatus 를 리턴해줘야함.
+//		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+//		
+//	}
+	
+	
+	
 	//조회 -> (/replies/:rno) GET //특정게시물의 댓글목록확인
 	//조회할때는 xml,json으로 처리
 	@GetMapping(value = "/{rno}", produces ={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -112,6 +118,24 @@ public class ReplyController {
 
 	}
 
+	
+	//replypage 메서드추가으로 수정 0322
+	@GetMapping(value="/pages/{bno}/{page}",produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReplyPageDTO>getList(@PathVariable("page") int page ,@PathVariable("bno")Long bno)
+	{
+		
+		Criteria cri = new Criteria(page, 10);
+		System.out.println("타는거여");
+		System.out.println("get Reply List bno:"+ bno);
+		System.out.println("cri:" + cri);
+		
+		
+		log.info("get Reply List bno:"+ bno);
+		log.info("cri:" + cri);
+		
+		return new ResponseEntity<ReplyPageDTO>(service.getListPage(cri, bno), HttpStatus.OK);
+		//ReplyPageDTO안에서  Reply객체를 REPLYLIST로 처리하기떄문 ReplypageDTO를 리스트로 처리할필요가없음  
+	}
 	
 	
 }

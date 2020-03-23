@@ -70,7 +70,7 @@ public class ReplayMapperTests {
 		log.info("udpate count = "+count);
 	}
 	
-	@Test
+	@Test@Ignore
 	public void TestList()
 	{
 		Criteria cri = new Criteria();
@@ -79,6 +79,16 @@ public class ReplayMapperTests {
 		for (ReplyVo replyVo : replist) {
 			log.info(replyVo);
 		}
+	}
+	@Test
+	public void testList2()
+	{
+		Criteria cri = new Criteria(2,10);
+		List<ReplyVo> replies = mapper.getListWithPaging(cri, 646655L);
+		for (ReplyVo replyVo : replies) {
+			log.info(replyVo);
+		}
+		
 	}
 	
 	

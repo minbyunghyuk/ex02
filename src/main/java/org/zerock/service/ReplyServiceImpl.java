@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVo;
 import org.zerock.mapper.ReplyMapper;
 
@@ -52,6 +53,13 @@ public class ReplyServiceImpl implements ReplyService {
 
 		log.info(no+"페이지로드");
 		return mapper.getListWithPaging(cri, no);
+	}
+
+	//댓글 페이지카운트 , 전체페이지정보 
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		// TODO Auto-generated method stub
+		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
 	}
 
 }
