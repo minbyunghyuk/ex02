@@ -24,7 +24,7 @@
  </update>
  
  <select id="getListWithPaging" resultType="org.zerock.domain.ReplyVo">
- 	<![CDATA[
+ <![CDATA[
  	select rno,bno,reply,replyer,replydate,updatedate
 	from
     (
@@ -33,7 +33,6 @@
     from tbl_reply
     where bno= #{bno} and rno>0 and rownum <=#{cri.pageNum}* #{cri.amount}
     )where rn > (#{cri.pageNum}-1) * #{cri.amount}
- 	
  	]]>
  </select>
  

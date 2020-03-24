@@ -125,10 +125,6 @@ public class ReplyController {
 	{
 		
 		Criteria cri = new Criteria(page, 10);
-		System.out.println("타는거여");
-		System.out.println("get Reply List bno:"+ bno);
-		System.out.println("cri:" + cri);
-		
 		
 		log.info("get Reply List bno:"+ bno);
 		log.info("cri:" + cri);

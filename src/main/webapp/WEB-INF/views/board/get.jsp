@@ -159,16 +159,14 @@
 			replyService.getList({bno:bnoValue,page:page||1},function(replyCnt,list){
 				
 				console.log("replyCnt : "+ replyCnt);
-				console.log("list: "+ list);
-				console.log(list);
 			//마지막페이지를 찾아서 호출해서 전체댓글의 숫자파악 후 마지막페이지를 호출해서이동시킴	
 			if(page == -1){
-				pageNum = Math.cell(replyCnt/10.0);
-				ShowList(pageNum);
+				
+				console.log(pageNum);
+				pageNum = Math.ceil(replyCnt/10.0);
+				showList(pageNum);
 				return;
 			}
-				
-				
 			var str = "";
 			//list가 존재하지않으면
 			if (list == null|| list.length == 0) {
@@ -231,7 +229,7 @@
 				//댓글이등록됬으니 list재로드
 				//0323 -1을줘서 일단 마지막페이지 count로드후 다시처리 
 				//showList(1);
-				showList(-1)
+				showList(-1);
 				});
 			});
 			//Ajax를 통해서(li)태그가 만들어지면 이후에이벤트를등록해야하기때문에 이벤트위임으로 처리 (delegation)
@@ -281,7 +279,7 @@
 				
 				
 			});
-			var pageNum =-1;
+			var pageNum = 1;
 			var replyPageFooter = $(".panel-footer");
 			
 			function showReplyPage(replyCnt) {
@@ -294,21 +292,21 @@
 				var next =false;
 				
 				if(endNum*10 >= replyCnt){
-					endNum= Math.ceil(rpyCnt/10.0);
+					endNum= Math.ceil(replyCnt/10.0);
 				}
 				if(endNum*10 < replyCnt){
 					next =true;
 				}
 				
-				var str= "<ul class='pagination ull-right'>";
+				var str= "<ul class='pagination pull-right'>";
 				if(prev){
-					str+="<li class='page-item'><a class='page-link' herf='"(startNum-1)+"'>이전</a></li>";
+					str+="<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>이전</a></li>";
 				}
 				
 				for(var i=  startNum; i<= endNum; i++){
 					var active =pageNum ==i ? "active":"";
 					
-					str+="<li class='page-item "+active+"'><a class='page-link' herf='"+i+"'>" + i + "</a></li>";
+					str+="<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>" + i + "</a></li>";
 		        }
 				if(next) {
 			          str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) +"'>다음</a></li>";
