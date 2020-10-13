@@ -169,7 +169,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- 프로젝트 내에서 pom.xml 에 객체를 JSON XML로 변환 용 -->
